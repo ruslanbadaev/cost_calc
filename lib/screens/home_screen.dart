@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fluttermvvmproviderdemo/components/post/post_view.dart';
-import 'package:fluttermvvmproviderdemo/notifiers/posts_notifier.dart';
-import 'package:fluttermvvmproviderdemo/services/api_service.dart';
+import 'package:flutter_port_scanner/components/scanner/scanner_view.dart';
+import 'package:flutter_port_scanner/notifiers/scanner_notifier.dart';
+import 'package:flutter_port_scanner/notifiers/theme_notifier.dart';
+import 'package:flutter_port_scanner/services/scanner_service.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,41 +16,38 @@ class HomeScreen extends StatefulWidget {
 class _MyHomePageState extends State<HomeScreen> {
   @override
   void initState() {
-    PostsNotifier postNotifier =
-    Provider.of<PostsNotifier>(context, listen: false);
-    ApiService.getPosts(postNotifier);
+    ScannersNotifier scannerNotifier =
+        Provider.of<ScannersNotifier>(context, listen: false);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    PostsNotifier postNotifier = Provider.of<PostsNotifier>(context);
+    ScannersNotifier scannerNotifier = Provider.of<ScannersNotifier>(context);
+    ThemeNotifier themeNotifier = Provider.of<ThemeNotifier>(context);
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("MVVM + Provider Demo"),
+          title: Text("Scanner"),
           actions: <Widget>[
-            IconButton(icon: Icon(Icons.add),onPressed: (){
-              Navigator.pushNamed(context, "/add_post");
-            },)
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                Navigator.pushNamed(context, "/add_scanner");
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.lightbulb_outline_rounded),
+              onPressed: () {
+                themeNotifier.toggle();
+              },
+            ),
           ],
         ),
-        body: postNotifier != null
-            ? Container(
-            color: Colors.black12,
-            child: ListView.builder(
-                itemCount: postNotifier.getPostList().length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: EdgeInsets.all(0),
-                    key: ObjectKey(postNotifier.getPostList()[index]),
-                    child: PostView(
-                      post: postNotifier.getPostList()[index],
-                    ),
-                  );
-                }))
+        body: scannerNotifier != null
+            ? Container()
             : Center(
-          child: CircularProgressIndicator(),
-        ));
+                child: CircularProgressIndicator(),
+              ));
   }
 }

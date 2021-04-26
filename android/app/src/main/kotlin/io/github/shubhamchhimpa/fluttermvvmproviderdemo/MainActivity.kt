@@ -1,4 +1,4 @@
-package io.github.shubhamchhimpa.fluttermvvmproviderdemo
+package io.github.shubhamchhimpa.flutter_port_scanner
 
 import io.flutter.embedding.android.FlutterActivity
 
