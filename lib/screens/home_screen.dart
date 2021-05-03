@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_port_scanner/components/scanner/scanner_view.dart';
-import 'package:flutter_port_scanner/notifiers/scanner_notifier.dart';
-import 'package:flutter_port_scanner/notifiers/theme_notifier.dart';
-import 'package:flutter_port_scanner/services/scanner_service.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_button/flutter_button.dart';
+import 'package:flutter_cost_calc/components/card/card_view.dart';
+import 'package:flutter_cost_calc/notifiers/card_notifier.dart';
+import 'package:flutter_cost_calc/notifiers/theme_notifier.dart';
+
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,19 +18,22 @@ class HomeScreen extends StatefulWidget {
 class _MyHomePageState extends State<HomeScreen> {
   @override
   void initState() {
-    ScannersNotifier scannerNotifier =
-        Provider.of<ScannersNotifier>(context, listen: false);
+    CardsNotifier cardNotifier =
+        Provider.of<CardsNotifier>(context, listen: false);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    ScannersNotifier scannerNotifier = Provider.of<ScannersNotifier>(context);
+    CardsNotifier cardNotifier = Provider.of<CardsNotifier>(context);
     ThemeNotifier themeNotifier = Provider.of<ThemeNotifier>(context);
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Scanner"),
+          title: Text(
+            "I want app and cola without sugar",
+            style: GoogleFonts.comfortaa(),
+          ),
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.add),
@@ -44,8 +49,37 @@ class _MyHomePageState extends State<HomeScreen> {
             ),
           ],
         ),
-        body: scannerNotifier != null
-            ? Container()
+        body: cardNotifier != null
+            ? Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                    Text(
+                      'Нет ничего приятнее, чем узнать Вашу экономию с помощью наших услуг',
+                      style: TextStyle(color: Colors.white12, fontSize: 24),
+                    ),
+                    SizedBox(
+                      height: 18,
+                    ),
+                    Text('От этого Вас удерживает только эта манящая кнопка',
+                        style: TextStyle(color: Colors.white24, fontSize: 18)),
+                    SizedBox(
+                      height: 24,
+                    ),
+                    AnimePressButton(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.pinkAccent,
+                      onTap: () {},
+                      wGradient: false,
+                      /*         gradientColors: [
+                        Colors.black,
+                        Colors.green,
+                      ], */
+                      title: "Рассчитать",
+                      titleColor: Colors.white,
+                    ),
+                  ]))
             : Center(
                 child: CircularProgressIndicator(),
               ));
