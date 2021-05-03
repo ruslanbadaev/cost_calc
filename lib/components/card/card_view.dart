@@ -26,13 +26,14 @@ class CardViewState extends State<CardView> {
   Widget build(BuildContext context) {
     return Expanded(
         child: Card(
+      color: (card.checked ?? false) ? Colors.orange : Colors.black12,
       child: Container(
           width: 320,
           height: 150,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Icon(Icons.radio),
+              card.icon ?? Icon(Icons.hourglass_empty_rounded),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -40,16 +41,16 @@ class CardViewState extends State<CardView> {
                       width: 200,
                       margin: EdgeInsets.only(bottom: 8),
                       child: Text(
-                        'dafdsfdafdsfdafdsfdafdsf dafdsfdafdsf',
+                        card.title ?? '---',
                         style: TextStyle(
                           fontSize: 18,
-                          color: Colors.white70,
+                          color: Colors.white,
                         ),
                       )),
                   Container(
                     width: 200,
-                    child: Text('dafdsfdafdsfdafdsfdafdsf dafdsfdafdsf',
-                        style: TextStyle(fontSize: 14, color: Colors.white54)),
+                    child: Text(card.text ?? '---',
+                        style: TextStyle(fontSize: 14, color: Colors.white70)),
                   ),
                 ],
               ),

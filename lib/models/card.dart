@@ -5,12 +5,15 @@ class CheckCard {
   String text;
   bool checked;
   Icon icon;
+  String price;
   CheckCard();
+
   CheckCard.fromMap(Map<String, dynamic> data) {
     title = data['title'];
     text = data['text'];
     checked = data['checked'];
     icon = data['icon'];
+    price = data['price'];
   }
 
   Map<String, dynamic> toMap() {
@@ -19,6 +22,7 @@ class CheckCard {
       'text': text,
       'checked': checked,
       'icon': icon,
+      'price': price,
     };
   }
 }

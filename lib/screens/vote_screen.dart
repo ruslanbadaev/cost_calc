@@ -26,6 +26,17 @@ class CardScreenSate extends State<CardScreen> {
                 SizedBox(),
                 Wrap(children: <Widget>[
                   CardView(
+                    card: CheckCard.fromMap({
+                      'title': '123',
+                      'text': '321',
+                      'checked': true,
+                      'icon': Icon(Icons.ac_unit)
+                    }),
+                  ),
+                  CardView(
+                    card: CheckCard(),
+                  ),
+                  CardView(
                     card: CheckCard(),
                   ),
                   CardView(
@@ -48,7 +59,7 @@ class CardScreenSate extends State<CardScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                  width: 200,
+                                  width: 400,
                                   margin: EdgeInsets.only(bottom: 8),
                                   child: Text(
                                     'Почему мы?',
@@ -58,7 +69,7 @@ class CardScreenSate extends State<CardScreen> {
                                     ),
                                   )),
                               Container(
-                                width: 200,
+                                width: 400,
                                 child: Text(
                                     'dafdsfdafdsfdafdsfdafdsf dafdsfdafdsf',
                                     style: TextStyle(
@@ -74,9 +85,9 @@ class CardScreenSate extends State<CardScreen> {
                   totalSteps: 10,
                   currentStep: 4,
                   size: 36,
-                  selectedColor: Colors.pinkAccent,
+                  selectedColor: Colors.orange,
                   unselectedColor: Colors.black45,
-                  customStep: (index, color, _) => color == Colors.pinkAccent
+                  customStep: (index, color, _) => color == Colors.orange
                       ? Container(
                           color: color,
                           child: Icon(

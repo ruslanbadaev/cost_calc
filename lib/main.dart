@@ -38,7 +38,7 @@ class MyAppState extends State<MyApp> {
       primaryColor: Colors.black,
       brightness: Brightness.dark,
       backgroundColor: const Color(0xFF212121),
-      accentColor: Colors.white,
+      accentColor: Colors.black,
       accentIconTheme: IconThemeData(color: Colors.black),
       dividerColor: Colors.black12,
     );

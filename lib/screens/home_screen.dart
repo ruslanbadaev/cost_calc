@@ -57,19 +57,19 @@ class _MyHomePageState extends State<HomeScreen> {
                     children: [
                     Text(
                       'Нет ничего приятнее, чем узнать Вашу экономию с помощью наших услуг',
-                      style: TextStyle(color: Colors.white12, fontSize: 24),
+                      style: TextStyle(color: Colors.white38, fontSize: 24),
                     ),
                     SizedBox(
                       height: 18,
                     ),
                     Text('От этого Вас удерживает только эта манящая кнопка',
-                        style: TextStyle(color: Colors.white24, fontSize: 18)),
+                        style: TextStyle(color: Colors.white70, fontSize: 18)),
                     SizedBox(
                       height: 24,
                     ),
                     AnimePressButton(
                       borderRadius: BorderRadius.circular(100),
-                      color: Colors.pinkAccent,
+                      color: Colors.orange,
                       onTap: () {},
                       wGradient: false,
                       /*         gradientColors: [
