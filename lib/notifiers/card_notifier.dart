@@ -6,8 +6,15 @@ import 'package:flutter_cost_calc/services/storage_service.dart';
 class CardsNotifier with ChangeNotifier {
   List<CheckCard> _cards = [];
   int _totalPrice = 0;
+  String _header = '';
   nextPage(int page) {
     _cards = CardsService().getItems(page);
+    notifyListeners();
+  }
+
+  nextHeader(int page) {
+    _header = CardsService().getHeader(page);
+    notifyListeners();
   }
 
   void toggleCard(int index) {
@@ -19,6 +26,10 @@ class CardsNotifier with ChangeNotifier {
 
   List<CheckCard> getItems() {
     return _cards;
+  }
+
+  String getHeader() {
+    return _header;
   }
 
   int getTotalPrice() {

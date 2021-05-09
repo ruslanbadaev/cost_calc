@@ -18,6 +18,7 @@ class CardScreenSate extends State<CardScreen> {
   void initState() {
     CardsNotifier cardsNotifier =
         Provider.of<CardsNotifier>(context, listen: false);
+    if (cardsNotifier.getItems().length == 0) cardsNotifier.nextHeader(0);
     if (cardsNotifier.getItems().length == 0) cardsNotifier.nextPage(0);
     super.initState();
   }
@@ -28,7 +29,7 @@ class CardScreenSate extends State<CardScreen> {
     CardsNotifier cardsNotifier = Provider.of<CardsNotifier>(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text('Итого ${cardsNotifier.getTotalPrice().toString()}\$'),
+          title: Text(cardsNotifier.getHeader()),
         ),
         body: Container(
           child: Column(
