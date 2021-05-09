@@ -36,15 +36,18 @@ class CardScreenSate extends State<CardScreen> {
               children: [
                 SizedBox(),
                 Wrap(children: <Widget>[
-                  for (Map card in cardsNotifier.getItems())
+                  for (var i = 0; i < cardsNotifier.getItems().length; i++)
                     InkWell(
-                        onTap: () => {},
+                        onTap: () => {cardsNotifier.toggleCard(i)},
                         child: CardView(
-                          card: CheckCard.fromMap(card),
+                          card: cardsNotifier.getItems()[i],
                         )),
-                  CardView(
+
+                  // for (Map card in cardsNotifier.getItems())
+
+                  /*   CardView(
                     card: CheckCard(),
-                  ),
+                  ), */
                 ]),
                 /*    Card(
                   child: */

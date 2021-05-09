@@ -4,7 +4,7 @@ import 'package:flutter_cost_calc/models/card.dart';
 import 'package:flutter_cost_calc/notifiers/card_notifier.dart';
 
 class CardsService {
-  List<Map> getItems(int page) {
+  List<CheckCard> getItems(int page) {
     final List<List<Map<String, dynamic>>> allCards = [
       [
         {
@@ -41,7 +41,43 @@ class CardsService {
         },
       ],
     ];
-    print(allCards[page]);
-    return allCards[page];
+    final List<List<CheckCard>> allCards1 = [
+      [
+        CheckCard.fromMap({
+          'title': '123',
+          'text': '321',
+          'checked': true,
+          'icon': Icons.qr_code_scanner_outlined
+        }),
+        CheckCard.fromMap({
+          'title': '123',
+          'text': '321',
+          'checked': true,
+          'icon': Icons.qr_code_scanner_outlined
+        }),
+        CheckCard.fromMap({
+          'title': '123',
+          'text': '321',
+          'checked': true,
+          'icon': Icons.qr_code_scanner_outlined
+        }),
+      ],
+      [
+        CheckCard.fromMap({
+          'title': '123',
+          'text': '321',
+          'checked': true,
+          'icon': Icons.qr_code_scanner_outlined
+        }),
+        CheckCard.fromMap({
+          'title': '123',
+          'text': '321',
+          'checked': true,
+          'icon': Icons.qr_code_scanner_outlined
+        }),
+      ],
+    ];
+    print(allCards1[page]);
+    return allCards1[page];
   }
 }
