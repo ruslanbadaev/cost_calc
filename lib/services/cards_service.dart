@@ -11,19 +11,19 @@ class CardsService {
           'title': '123',
           'text': '321',
           'checked': true,
-          'icon': Icon(Icons.qr_code_scanner_outlined)
+          'icon': Icons.qr_code_scanner_outlined
         },
         {
           'title': 'fff',
           'text': 'aaa',
           'checked': false,
-          'icon': Icon(Icons.ac_unit)
+          'icon': Icons.ac_unit
         },
         {
           'title': 'aaa',
           'text': 'fff',
           'checked': false,
-          'icon': Icon(Icons.cached_outlined)
+          'icon': Icons.cached_outlined
         },
       ],
       [
@@ -31,13 +31,13 @@ class CardsService {
           'title': '123',
           'text': '321',
           'checked': true,
-          'icon': Icon(Icons.qr_code_scanner_outlined)
+          'icon': Icons.qr_code_scanner_outlined
         },
         {
           'title': 'aaa',
           'text': 'fff',
           'checked': false,
-          'icon': Icon(Icons.cached_outlined)
+          'icon': Icons.cached_outlined
         },
       ],
     ];

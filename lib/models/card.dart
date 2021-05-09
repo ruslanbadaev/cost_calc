@@ -4,7 +4,7 @@ class CheckCard {
   String title;
   String text;
   bool checked;
-  Icon icon;
+  IconData icon;
   String price;
   CheckCard();
 

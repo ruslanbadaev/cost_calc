@@ -26,14 +26,23 @@ class CardViewState extends State<CardView> {
   Widget build(BuildContext context) {
     return Expanded(
         child: Card(
-      color: (card.checked ?? false) ? Colors.orange : Colors.black12,
+      color: (card.checked ?? false) ? Colors.deepPurpleAccent : null,
       child: Container(
           width: 320,
           height: 150,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              card.icon ?? Icon(Icons.hourglass_empty_rounded),
+              Icon(
+                    card.icon,
+                    size: (card.checked ?? false) ? 44 : 42,
+                    color: (card.checked ?? false) ? Colors.white : null,
+                  ) ??
+                  Icon(
+                    Icons.hourglass_empty_rounded,
+                    color: (card.checked ?? false) ? Colors.white : null,
+                    size: 42,
+                  ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -42,15 +51,23 @@ class CardViewState extends State<CardView> {
                       margin: EdgeInsets.only(bottom: 8),
                       child: Text(
                         card.title ?? '---',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
+                        style: (card.checked ?? false)
+                            ? TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              )
+                            : Theme.of(context).textTheme.body2,
                       )),
                   Container(
                     width: 200,
                     child: Text(card.text ?? '---',
-                        style: TextStyle(fontSize: 14, color: Colors.white70)),
+                        style: (card.checked ?? false)
+                            ? TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white)
+                            : Theme.of(context).textTheme.body1),
                   ),
                 ],
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sweetsheet/sweetsheet.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:flutter_cost_calc/components/card/card_view.dart';
 import 'package:flutter_cost_calc/models/card.dart';
@@ -23,6 +24,7 @@ class CardScreenSate extends State<CardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final SweetSheet _sweetSheet = SweetSheet();
     CardsNotifier cardsNotifier = Provider.of<CardsNotifier>(context);
     return Scaffold(
         appBar: AppBar(
@@ -35,22 +37,28 @@ class CardScreenSate extends State<CardScreen> {
                 SizedBox(),
                 Wrap(children: <Widget>[
                   for (Map card in cardsNotifier.getItems())
-                    CardView(
-                      card: CheckCard.fromMap(card),
-                    ),
+                    InkWell(
+                        onTap: () => {},
+                        child: CardView(
+                          card: CheckCard.fromMap(card),
+                        )),
                   CardView(
                     card: CheckCard(),
                   ),
                 ]),
-                Card(
-                  color: Colors.black45,
-                  child: Container(
+                /*    Card(
+                  child: */
+
+                /*  ), */
+
+                Column(children: [
+                  Container(
                       width: 560,
                       height: 150,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Icon(Icons.radio),
+                          // Icon(Icons.radio),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -60,44 +68,42 @@ class CardScreenSate extends State<CardScreen> {
                                   child: Text(
                                     'Почему мы?',
                                     style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white70,
-                                    ),
+                                        color: Colors.deepPurpleAccent),
                                   )),
                               Container(
                                 width: 400,
                                 child: Text(
                                     'dafdsfdafdsfdafdsfdafdsf dafdsfdafdsf',
-                                    style: TextStyle(
-                                        fontSize: 14, color: Colors.white54)),
+                                    style: Theme.of(context).textTheme.body1),
                               ),
                             ],
                           ),
                           SizedBox()
                         ],
                       )),
-                ),
-                StepProgressIndicator(
-                  totalSteps: 10,
-                  currentStep: 4,
-                  size: 36,
-                  selectedColor: Colors.orange,
-                  unselectedColor: Colors.black45,
-                  customStep: (index, color, _) => color == Colors.orange
-                      ? Container(
-                          color: color,
-                          child: Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          ),
-                        )
-                      : Container(
-                          color: color,
-                          child: Icon(
-                            Icons.remove,
-                          ),
-                        ),
-                ),
+                  StepProgressIndicator(
+                    totalSteps: 10,
+                    currentStep: 4,
+                    size: 36,
+                    selectedColor: Colors.deepPurpleAccent,
+                    unselectedColor: Colors.black45,
+                    customStep: (index, color, _) =>
+                        color == Colors.deepPurpleAccent
+                            ? Container(
+                                color: color,
+                                child: Icon(
+                                  Icons.check,
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Container(
+                                color: color,
+                                child: Icon(
+                                  Icons.remove,
+                                ),
+                              ),
+                  ),
+                ])
               ]),
         ));
   }

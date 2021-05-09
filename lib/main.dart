@@ -77,7 +77,7 @@ class MyAppState extends State<MyApp> {
           case '/calc_screen':
             return PageTransition(
               child: CardScreen(),
-              type: PageTransitionType.topToBottom,
+              type: PageTransitionType.bottomToTop,
               duration: Duration(milliseconds: 800),
               settings: settings,
             );
