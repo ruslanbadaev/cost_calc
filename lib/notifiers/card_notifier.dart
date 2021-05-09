@@ -6,10 +6,35 @@ import 'package:flutter_cost_calc/services/storage_service.dart';
 class CardsNotifier with ChangeNotifier {
   List<CheckCard> _cards = [];
   int _totalPrice = 0;
+  int _totalPages = 0;
+  int _page = 0;
   String _header = '';
   String _whyAreWe = '';
+  setPage(int page) {
+    _cards = [];
+    _page = page;
+    notifyListeners();
+  }
+
+  int getPage() {
+    return _page;
+  }
+
   nextPage(int page) {
+    _cards = [];
+/*     CardsService().getItems(page).forEach((element) {
+      print(element.title);
+    }); */
     _cards = CardsService().getItems(page);
+    notifyListeners();
+  }
+
+  getTotalPages() {
+    return _totalPages;
+  }
+
+  loadTotalPages() {
+    _totalPages = CardsService().getTotalPages();
     notifyListeners();
   }
 
@@ -31,6 +56,9 @@ class CardsNotifier with ChangeNotifier {
   }
 
   List<CheckCard> getItems() {
+    _cards.forEach((element) {
+      print(element.title);
+    });
     return _cards;
   }
 

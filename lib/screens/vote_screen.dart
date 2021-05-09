@@ -18,6 +18,7 @@ class CardScreenSate extends State<CardScreen> {
   void initState() {
     CardsNotifier cardsNotifier =
         Provider.of<CardsNotifier>(context, listen: false);
+    cardsNotifier.loadTotalPages();
     if (cardsNotifier.getItems().length == 0) cardsNotifier.nextHeader(0);
     if (cardsNotifier.getItems().length == 0) cardsNotifier.nextWhyAreWe(0);
     if (cardsNotifier.getItems().length == 0) cardsNotifier.nextPage(0);
@@ -26,7 +27,7 @@ class CardScreenSate extends State<CardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final SweetSheet _sweetSheet = SweetSheet();
+    // final SweetSheet _sweetSheet = SweetSheet();
     CardsNotifier cardsNotifier = Provider.of<CardsNotifier>(context);
     return Scaffold(
         appBar: AppBar(
@@ -82,23 +83,65 @@ class CardScreenSate extends State<CardScreen> {
                               SizedBox()
                             ],
                           )),
-                      Card(
-                        color: Colors.deepPurpleAccent,
-                        child: Container(
-                          margin: EdgeInsets.all(24),
-                          child: Text(
-                              'Итого ${cardsNotifier.getTotalPrice().toString()}\$',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold)),
-                        ),
+                      Row(
+                        children: [
+                          Card(
+                            //color: Colors.deepPurpleAccent,
+                            child: Container(
+                              margin: EdgeInsets.all(24),
+                              child: Text(
+                                  'Итого ${cardsNotifier.getTotalPrice().toString()}\$',
+                                  style: TextStyle(
+                                      //color: Colors.white,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                          InkWell(
+                              onTap: () => {
+                                    cardsNotifier
+                                        .setPage(cardsNotifier.getPage() - 1),
+                                    cardsNotifier
+                                        .nextHeader(cardsNotifier.getPage()),
+                                    cardsNotifier
+                                        .nextWhyAreWe(cardsNotifier.getPage()),
+                                    cardsNotifier
+                                        .nextPage(cardsNotifier.getPage())
+                                  },
+                              child: Card(
+                                color: Colors.deepPurpleAccent,
+                                child: Container(
+                                  margin: EdgeInsets.all(24),
+                                  child: Icon(
+                                    Icons.navigate_before_rounded,
+                                  ),
+                                ),
+                              )),
+                          InkWell(
+                              onTap: () => {
+                                    cardsNotifier
+                                        .setPage(cardsNotifier.getPage() + 1),
+                                    cardsNotifier
+                                        .nextHeader(cardsNotifier.getPage()),
+                                    cardsNotifier
+                                        .nextWhyAreWe(cardsNotifier.getPage()),
+                                    cardsNotifier
+                                        .nextPage(cardsNotifier.getPage())
+                                  },
+                              child: Card(
+                                color: Colors.deepPurpleAccent,
+                                child: Container(
+                                  margin: EdgeInsets.all(24),
+                                  child: Icon(Icons.navigate_next_rounded),
+                                ),
+                              )),
+                        ],
                       )
                     ],
                   ),
                   StepProgressIndicator(
-                    totalSteps: 10,
-                    currentStep: 4,
+                    totalSteps: cardsNotifier.getTotalPages(),
+                    currentStep: cardsNotifier.getPage(),
                     size: 36,
                     selectedColor: Colors.deepPurpleAccent,
                     unselectedColor: Colors.black45,
