@@ -14,7 +14,16 @@ class CardScreen extends StatefulWidget {
 
 class CardScreenSate extends State<CardScreen> {
   @override
+  void initState() {
+    CardsNotifier cardsNotifier =
+        Provider.of<CardsNotifier>(context, listen: false);
+    cardsNotifier.nextPage(0);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    CardsNotifier cardsNotifier = Provider.of<CardsNotifier>(context);
     return Scaffold(
         appBar: AppBar(
           title: Text("Vote"),
@@ -25,23 +34,10 @@ class CardScreenSate extends State<CardScreen> {
               children: [
                 SizedBox(),
                 Wrap(children: <Widget>[
-                  CardView(
-                    card: CheckCard.fromMap({
-                      'title': '123',
-                      'text': '321',
-                      'checked': true,
-                      'icon': Icon(Icons.ac_unit)
-                    }),
-                  ),
-                  CardView(
-                    card: CheckCard(),
-                  ),
-                  CardView(
-                    card: CheckCard(),
-                  ),
-                  CardView(
-                    card: CheckCard(),
-                  ),
+                  for (Map card in cardsNotifier.getItems())
+                    CardView(
+                      card: CheckCard.fromMap(card),
+                    ),
                   CardView(
                     card: CheckCard(),
                   ),
