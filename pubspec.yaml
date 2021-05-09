@@ -17,6 +17,8 @@ dependencies:
   flutter_button: ^0.0.4
   google_fonts: ^2.0.0
   step_progress_indicator: ^0.2.5+8
+  page_transition: ^2.0.2
+  
 
 dev_dependencies:
   flutter_test:
