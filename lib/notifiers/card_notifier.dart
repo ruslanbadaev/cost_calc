@@ -4,24 +4,24 @@ import 'package:flutter_cost_calc/services/cards_service.dart';
 import 'package:flutter_cost_calc/services/storage_service.dart';
 
 class CardsNotifier with ChangeNotifier {
-  List<Map<String, dynamic>> _cards = [];
-  List<CheckCard> _cards1 = [];
-
+  List<CheckCard> _cards = [];
+  int _totalPrice = 0;
   nextPage(int page) {
-    //_cards = CardsService().getItems(page);
-    _cards1 = CardsService().getItems(page);
+    _cards = CardsService().getItems(page);
   }
 
   void toggleCard(int index) {
-    print(_cards1[index].checked);
-    print('123');
-
-    _cards1[index].checked = !_cards1[index].checked;
-    print(_cards1[index].checked);
+    _cards[index].checked = !_cards[index].checked;
+    _totalPrice +=
+        _cards[index].checked ? _cards[index].price : -_cards[index].price;
     notifyListeners();
   }
 
   List<CheckCard> getItems() {
-    return _cards1;
+    return _cards;
+  }
+
+  int getTotalPrice() {
+    return _totalPrice;
   }
 }

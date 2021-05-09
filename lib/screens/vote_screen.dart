@@ -18,7 +18,7 @@ class CardScreenSate extends State<CardScreen> {
   void initState() {
     CardsNotifier cardsNotifier =
         Provider.of<CardsNotifier>(context, listen: false);
-    cardsNotifier.nextPage(0);
+    if (cardsNotifier.getItems().length == 0) cardsNotifier.nextPage(0);
     super.initState();
   }
 
@@ -28,7 +28,7 @@ class CardScreenSate extends State<CardScreen> {
     CardsNotifier cardsNotifier = Provider.of<CardsNotifier>(context);
     return Scaffold(
         appBar: AppBar(
-          title: Text("Vote"),
+          title: Text('Итого ${cardsNotifier.getTotalPrice().toString()}\$'),
         ),
         body: Container(
           child: Column(
@@ -42,48 +42,56 @@ class CardScreenSate extends State<CardScreen> {
                         child: CardView(
                           card: cardsNotifier.getItems()[i],
                         )),
-
-                  // for (Map card in cardsNotifier.getItems())
-
-                  /*   CardView(
-                    card: CheckCard(),
-                  ), */
                 ]),
-                /*    Card(
-                  child: */
-
-                /*  ), */
-
                 Column(children: [
-                  Container(
-                      width: 560,
-                      height: 150,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          // Icon(Icons.radio),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                          width: 560,
+                          height: 150,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Container(
-                                  width: 400,
-                                  margin: EdgeInsets.only(bottom: 8),
-                                  child: Text(
-                                    'Почему мы?',
-                                    style: TextStyle(
-                                        color: Colors.deepPurpleAccent),
-                                  )),
-                              Container(
-                                width: 400,
-                                child: Text(
-                                    'dafdsfdafdsfdafdsfdafdsf dafdsfdafdsf',
-                                    style: Theme.of(context).textTheme.body1),
+                              // Icon(Icons.radio),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      width: 400,
+                                      margin: EdgeInsets.only(bottom: 8),
+                                      child: Text(
+                                        'Почему мы?',
+                                        style: TextStyle(
+                                            color: Colors.deepPurpleAccent),
+                                      )),
+                                  Container(
+                                    width: 400,
+                                    child: Text(
+                                        'dafdsfdafdsfdafdsfdafdsf dafdsfdafdsf',
+                                        style:
+                                            Theme.of(context).textTheme.body1),
+                                  ),
+                                ],
                               ),
+                              SizedBox()
                             ],
-                          ),
-                          SizedBox()
-                        ],
-                      )),
+                          )),
+                      Card(
+                        color: Colors.deepPurpleAccent,
+                        child: Container(
+                          margin: EdgeInsets.all(24),
+                          child: Text(
+                              'Итого ${cardsNotifier.getTotalPrice().toString()}\$',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      )
+                    ],
+                  ),
                   StepProgressIndicator(
                     totalSteps: 10,
                     currentStep: 4,

@@ -5,7 +5,7 @@ class CheckCard {
   String text;
   bool checked;
   IconData icon;
-  String price;
+  int price;
   CheckCard();
 
   CheckCard.fromMap(Map<String, dynamic> data) {

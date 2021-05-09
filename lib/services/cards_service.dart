@@ -46,19 +46,22 @@ class CardsService {
         CheckCard.fromMap({
           'title': '123',
           'text': '321',
-          'checked': true,
+          'price': 100,
+          'checked': false,
           'icon': Icons.qr_code_scanner_outlined
         }),
         CheckCard.fromMap({
           'title': '123',
           'text': '321',
-          'checked': true,
+          'price': 100,
+          'checked': false,
           'icon': Icons.qr_code_scanner_outlined
         }),
         CheckCard.fromMap({
           'title': '123',
           'text': '321',
-          'checked': true,
+          'price': 100,
+          'checked': false,
           'icon': Icons.qr_code_scanner_outlined
         }),
       ],
@@ -66,13 +69,15 @@ class CardsService {
         CheckCard.fromMap({
           'title': '123',
           'text': '321',
-          'checked': true,
+          'price': 100,
+          'checked': false,
           'icon': Icons.qr_code_scanner_outlined
         }),
         CheckCard.fromMap({
           'title': '123',
           'text': '321',
-          'checked': true,
+          'price': 100,
+          'checked': false,
           'icon': Icons.qr_code_scanner_outlined
         }),
       ],
