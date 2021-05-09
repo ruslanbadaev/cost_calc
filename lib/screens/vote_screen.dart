@@ -19,6 +19,7 @@ class CardScreenSate extends State<CardScreen> {
     CardsNotifier cardsNotifier =
         Provider.of<CardsNotifier>(context, listen: false);
     if (cardsNotifier.getItems().length == 0) cardsNotifier.nextHeader(0);
+    if (cardsNotifier.getItems().length == 0) cardsNotifier.nextWhyAreWe(0);
     if (cardsNotifier.getItems().length == 0) cardsNotifier.nextPage(0);
     super.initState();
   }
@@ -50,7 +51,8 @@ class CardScreenSate extends State<CardScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                          width: 560,
+                          margin: EdgeInsets.only(left: 12),
+                          //   width: MediaQuery.of(context).size.width * 0.65,
                           height: 150,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -60,7 +62,8 @@ class CardScreenSate extends State<CardScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                      width: 400,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.65,
                                       margin: EdgeInsets.only(bottom: 8),
                                       child: Text(
                                         'Почему мы?',
@@ -68,9 +71,9 @@ class CardScreenSate extends State<CardScreen> {
                                             color: Colors.deepPurpleAccent),
                                       )),
                                   Container(
-                                    width: 400,
-                                    child: Text(
-                                        'dafdsfdafdsfdafdsfdafdsf dafdsfdafdsf',
+                                    width: MediaQuery.of(context).size.width *
+                                        0.65,
+                                    child: Text(cardsNotifier.getWhyAreWe(),
                                         style:
                                             Theme.of(context).textTheme.body1),
                                   ),

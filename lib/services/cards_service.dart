@@ -52,6 +52,7 @@ class CardsService {
 
   String getHeader(int page) {
     final List<String> allHeaders = [
+      'Выбор платформы',
       'Тип приложения',
       'Авторизация',
     ];
@@ -59,12 +60,12 @@ class CardsService {
     return allHeaders[page];
   }
 
-  String whyAreWe(int page) {
-    final List<String> allHeaders = [
-      'Тип приложения',
+  String getWhyAreWe(int page) {
+    final List<String> allWhyAreWe = [
+      'Кроссплатформенность технологии Flutter позволяет использовать одну кодовую базу под множество платформ',
       'Авторизация',
     ];
 
-    return allHeaders[page];
+    return allWhyAreWe[page];
   }
 }

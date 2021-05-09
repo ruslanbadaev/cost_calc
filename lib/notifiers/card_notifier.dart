@@ -7,6 +7,7 @@ class CardsNotifier with ChangeNotifier {
   List<CheckCard> _cards = [];
   int _totalPrice = 0;
   String _header = '';
+  String _whyAreWe = '';
   nextPage(int page) {
     _cards = CardsService().getItems(page);
     notifyListeners();
@@ -14,6 +15,11 @@ class CardsNotifier with ChangeNotifier {
 
   nextHeader(int page) {
     _header = CardsService().getHeader(page);
+    notifyListeners();
+  }
+
+  nextWhyAreWe(int page) {
+    _whyAreWe = CardsService().getWhyAreWe(page);
     notifyListeners();
   }
 
@@ -30,6 +36,10 @@ class CardsNotifier with ChangeNotifier {
 
   String getHeader() {
     return _header;
+  }
+
+  String getWhyAreWe() {
+    return _whyAreWe;
   }
 
   int getTotalPrice() {
