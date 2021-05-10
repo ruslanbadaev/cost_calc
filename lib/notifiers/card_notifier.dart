@@ -10,6 +10,22 @@ class CardsNotifier with ChangeNotifier {
   int _page = 0;
   String _header = '';
   String _whyAreWe = '';
+  bool _runSlider = false;
+
+  void runSlider() {
+    _runSlider = true;
+    notifyListeners();
+  }
+
+  void stopSlider() {
+    _runSlider = false;
+    notifyListeners();
+  }
+
+  bool sliderIsRun() {
+    return _runSlider;
+  }
+
   setPage(int page) {
     _cards = [];
     _page = page;
@@ -22,9 +38,6 @@ class CardsNotifier with ChangeNotifier {
 
   nextPage(int page) {
     _cards = [];
-/*     CardsService().getItems(page).forEach((element) {
-      print(element.title);
-    }); */
     _cards = CardsService().getItems(page);
     notifyListeners();
   }
@@ -56,9 +69,6 @@ class CardsNotifier with ChangeNotifier {
   }
 
   List<CheckCard> getItems() {
-    _cards.forEach((element) {
-      print(element.title);
-    });
     return _cards;
   }
 
