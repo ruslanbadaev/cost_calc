@@ -99,17 +99,24 @@ class CardScreenSate extends State<CardScreen> {
                           ),
                           InkWell(
                               onTap: () => {
-                                    cardsNotifier
-                                        .setPage(cardsNotifier.getPage() - 1),
-                                    cardsNotifier
-                                        .nextHeader(cardsNotifier.getPage()),
-                                    cardsNotifier
-                                        .nextWhyAreWe(cardsNotifier.getPage()),
-                                    cardsNotifier
-                                        .nextPage(cardsNotifier.getPage())
+                                    if (cardsNotifier.getPage() > 0)
+                                      {
+                                        cardsNotifier.setPage(
+                                            cardsNotifier.getPage() - 1),
+                                        cardsNotifier.nextHeader(
+                                            cardsNotifier.getPage()),
+                                        cardsNotifier.nextWhyAreWe(
+                                            cardsNotifier.getPage()),
+                                        cardsNotifier
+                                            .nextPage(cardsNotifier.getPage()),
+                                        Navigator.pushNamed(
+                                            context, "/calc_screen")
+                                      }
                                   },
                               child: Card(
-                                color: Colors.deepPurpleAccent,
+                                color: cardsNotifier.getPage() > 0
+                                    ? Colors.deepPurpleAccent
+                                    : null,
                                 child: Container(
                                   margin: EdgeInsets.all(24),
                                   child: Icon(
@@ -119,17 +126,26 @@ class CardScreenSate extends State<CardScreen> {
                               )),
                           InkWell(
                               onTap: () => {
-                                    cardsNotifier
-                                        .setPage(cardsNotifier.getPage() + 1),
-                                    cardsNotifier
-                                        .nextHeader(cardsNotifier.getPage()),
-                                    cardsNotifier
-                                        .nextWhyAreWe(cardsNotifier.getPage()),
-                                    cardsNotifier
-                                        .nextPage(cardsNotifier.getPage())
+                                    if (cardsNotifier.getPage() <=
+                                        cardsNotifier.getTotalPages())
+                                      {
+                                        cardsNotifier.setPage(
+                                            cardsNotifier.getPage() + 1),
+                                        cardsNotifier.nextHeader(
+                                            cardsNotifier.getPage()),
+                                        cardsNotifier.nextWhyAreWe(
+                                            cardsNotifier.getPage()),
+                                        cardsNotifier
+                                            .nextPage(cardsNotifier.getPage()),
+                                        Navigator.pushNamed(
+                                            context, "/calc_screen")
+                                      }
                                   },
                               child: Card(
-                                color: Colors.deepPurpleAccent,
+                                color: cardsNotifier.getPage() <=
+                                        cardsNotifier.getTotalPages()
+                                    ? Colors.deepPurpleAccent
+                                    : null,
                                 child: Container(
                                   margin: EdgeInsets.all(24),
                                   child: Icon(Icons.navigate_next_rounded),
