@@ -4,6 +4,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter_cost_calc/notifiers/card_notifier.dart';
 import 'package:flutter_cost_calc/notifiers/theme_notifier.dart';
 import 'package:flutter_cost_calc/screens/vote_screen.dart';
+import 'package:flutter_cost_calc/screens/total_screen.dart';
 import 'package:flutter_cost_calc/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -78,7 +79,15 @@ class MyAppState extends State<MyApp> {
             return PageTransition(
               child: CardScreen(),
               type: PageTransitionType.bottomToTop,
-              duration: Duration(milliseconds: 800),
+              duration: Duration(milliseconds: 300),
+              settings: settings,
+            );
+            break;
+          case '/total_screen':
+            return PageTransition(
+              child: TotalScreen(),
+              type: PageTransitionType.bottomToTop,
+              duration: Duration(milliseconds: 500),
               settings: settings,
             );
             break;

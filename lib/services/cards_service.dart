@@ -8,23 +8,23 @@ final List<List<CheckCard>> allCards = [
     CheckCard.fromMap({
       'title': 'Android + IoS',
       'text': 'Бесплатный бонус: Web',
-      'price': 100,
+      'price': 0,
       'checked': false,
-      'icon': Icons.qr_code_scanner_outlined
+      'icon': Icons.phone_android_rounded
     }),
     CheckCard.fromMap({
       'title': 'IoS + Web',
       'text': 'Бесплатный бонус: Android',
-      'price': 100,
+      'price': 0,
       'checked': false,
-      'icon': Icons.qr_code_scanner_outlined
+      'icon': Icons.phone_iphone_rounded
     }),
     CheckCard.fromMap({
       'title': 'Web + Android',
       'text': 'Бесплатный бонус: IoS',
-      'price': 100,
+      'price': 0,
       'checked': false,
-      'icon': Icons.qr_code_scanner_outlined
+      'icon': Icons.web_asset_rounded
     }),
   ],
   [
@@ -33,35 +33,35 @@ final List<List<CheckCard>> allCards = [
       'text': 'Простая аторизация с подтверждением по почте',
       'price': 100,
       'checked': false,
-      'icon': Icons.qr_code_scanner_outlined
+      'icon': Icons.email_rounded
     }),
     CheckCard.fromMap({
       'title': 'Социальные сети',
       'text': 'Авторизация через API популярных социальных сетей',
       'price': 100,
       'checked': false,
-      'icon': Icons.qr_code_scanner_outlined
+      'icon': Icons.account_circle_rounded
     }),
     CheckCard.fromMap({
       'title': 'Номер телефона',
       'text': 'Авторизация с подтвердением номера телефона по sms',
       'price': 100,
       'checked': false,
-      'icon': Icons.qr_code_scanner_outlined
+      'icon': Icons.phone_enabled_rounded
     }),
     CheckCard.fromMap({
       'title': 'QR код',
       'text': 'Авторизация методом сканирования QR кода',
       'price': 100,
       'checked': false,
-      'icon': Icons.qr_code_scanner_outlined
+      'icon': Icons.qr_code_scanner_rounded
     }),
     CheckCard.fromMap({
       'title': 'Восстановление пароля',
       'text': 'Дать возможность пользователю восстановить пароль',
       'price': 100,
       'checked': false,
-      'icon': Icons.qr_code_scanner_outlined
+      'icon': Icons.lock_open_rounded
     }),
   ],
 ];
@@ -73,6 +73,8 @@ class CardsService {
   }
 
   int getTotalPages() {
+    print('-->');
+    print(allCards.length);
     return allCards.length;
   }
 
@@ -88,8 +90,8 @@ class CardsService {
 
   String getWhyAreWe(int page) {
     final List<String> allWhyAreWe = [
-      'Кроссплатформенность технологии Flutter позволяет использовать одну кодовую базу под множество платформ',
-      'Авторизация',
+      'Кроссплатформенность технологии Flutter позволяет использовать одну кодовую базу под множество платформ.',
+      'Большинство компаний имеют штат незанятых работников. Мы предпочитаем "резиновые" проектные команды. Вам не придется оплачиввать лишние рты.',
     ];
 
     return allWhyAreWe[page];

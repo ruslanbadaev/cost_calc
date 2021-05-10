@@ -114,7 +114,7 @@ class CardScreenSate extends State<CardScreen> {
                                 ),
                                 InkWell(
                                     onTap: () => {
-                                          if (cardsNotifier.getPage() > 0)
+                                          if (cardsNotifier.getPage() >= 1)
                                             {
                                               cardsNotifier.runSlider(),
                                               cardsNotifier.setPage(
@@ -130,7 +130,7 @@ class CardScreenSate extends State<CardScreen> {
                                             }
                                         },
                                     child: Card(
-                                      color: cardsNotifier.getPage() > 0
+                                      color: cardsNotifier.getPage() >= 1
                                           ? Colors.deepPurpleAccent
                                           : null,
                                       child: Container(
@@ -142,7 +142,7 @@ class CardScreenSate extends State<CardScreen> {
                                     )),
                                 InkWell(
                                     onTap: () => {
-                                          if (cardsNotifier.getPage() <=
+                                          if (cardsNotifier.getPage() + 1 <
                                               cardsNotifier.getTotalPages())
                                             {
                                               cardsNotifier.runSlider(),
@@ -157,28 +157,33 @@ class CardScreenSate extends State<CardScreen> {
                                               Navigator.pushNamed(
                                                   context, "/calc_screen")
                                             }
+                                          else
+                                            {
+                                              Navigator.pushNamed(
+                                                  context, "/total_screen")
+                                            }
                                         },
                                     child: Card(
-                                      color: cardsNotifier.getPage() <=
-                                              cardsNotifier.getTotalPages()
-                                          ? Colors.deepPurpleAccent
-                                          : null,
+                                      color: Colors.deepPurpleAccent,
                                       child: Container(
                                         margin: EdgeInsets.all(24),
                                         child:
                                             Icon(Icons.navigate_next_rounded),
                                       ),
                                     )),
+                                SizedBox(
+                                  width: 8,
+                                )
                               ],
                             )
                           ],
                         ),
                         StepProgressIndicator(
                           totalSteps: cardsNotifier.getTotalPages(),
-                          currentStep: cardsNotifier.getPage(),
+                          currentStep: cardsNotifier.getPage() + 1,
                           size: 36,
                           selectedColor: Colors.deepPurpleAccent,
-                          unselectedColor: Colors.black45,
+                          unselectedColor: Colors.white24,
                           customStep: (index, color, _) =>
                               color == Colors.deepPurpleAccent
                                   ? Container(
