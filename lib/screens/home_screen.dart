@@ -19,8 +19,6 @@ class HomeScreen extends StatefulWidget {
 class _MyHomePageState extends State<HomeScreen> {
   @override
   void initState() {
-    CardsNotifier cardNotifier =
-        Provider.of<CardsNotifier>(context, listen: false);
     super.initState();
   }
 

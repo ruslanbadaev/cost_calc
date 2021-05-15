@@ -7,6 +7,7 @@ class CardsNotifier with ChangeNotifier {
   List<CheckCard> _cards = [];
   int _totalPrice = 0;
   int _totalPages = 0;
+  List<CheckCard> _selectedCards = [];
   int _page = 0;
   String _header = '';
   String _whyAreWe = '';
@@ -63,6 +64,10 @@ class CardsNotifier with ChangeNotifier {
 
   void toggleCard(int index) {
     _cards[index].checked = !_cards[index].checked;
+    if (_cards[index].checked)
+      _selectedCards.add(_cards[index]);
+    else
+      _selectedCards.remove(_cards[index]);
     _totalPrice +=
         _cards[index].checked ? _cards[index].price : -_cards[index].price;
     notifyListeners();
@@ -70,6 +75,10 @@ class CardsNotifier with ChangeNotifier {
 
   List<CheckCard> getItems() {
     return _cards;
+  }
+
+  List<CheckCard> getSelectedItems() {
+    return _selectedCards;
   }
 
   String getHeader() {
