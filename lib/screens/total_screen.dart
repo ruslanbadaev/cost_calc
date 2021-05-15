@@ -29,19 +29,54 @@ class TotalScreenSate extends State<TotalScreen> {
   Widget build(BuildContext context) {
     CardsNotifier cardsNotifier = Provider.of<CardsNotifier>(context);
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Подводим итоги'),
-        ),
-        body: !cardsNotifier.sliderIsRun()
-            ? Container()
-            : Center(
-                child: SleekCircularSlider(
-                    appearance: CircularSliderAppearance(
-                customColors: CustomSliderColors(
-                    dotColor: Colors.white,
-                    trackColor: Colors.purpleAccent,
-                    progressBarColor: Colors.deepPurpleAccent),
-                spinnerMode: true,
-              ))));
+      appBar: AppBar(
+        title: Text('Подводим итоги'),
+      ),
+      body: !cardsNotifier.sliderIsRun()
+          ? Column(children: [
+              Container(
+                child: Column(
+                  children: [
+                    for (CheckCard card in cardsNotifier.getSelectedItems())
+                      Card(
+                        child: ListTile(
+                          title: Text(card.title,
+                              style: Theme.of(context).textTheme.body1),
+                          leading: Icon(card.icon),
+                          trailing: Text('${card.price.toString()}\$',
+                              style: Theme.of(context).textTheme.body1),
+                          hoverColor: Colors.deepPurpleAccent,
+                        ),
+                      )
+                  ],
+                ),
+              ),
+              Card(
+                color: Colors.deepPurpleAccent,
+                child: ListTile(
+                  title: Text('Примерная стоимость',
+                      style: Theme.of(context).textTheme.body1),
+                  leading: Icon(Icons.thumb_up_alt_rounded),
+                  trailing: Text('${cardsNotifier.getTotalPrice()}\$',
+                      style: Theme.of(context).textTheme.body1),
+                  hoverColor: Colors.deepPurpleAccent,
+                ),
+              )
+            ])
+          : Center(
+              child: SleekCircularSlider(
+                  appearance: CircularSliderAppearance(
+              customColors: CustomSliderColors(
+                  dotColor: Colors.white,
+                  trackColor: Colors.purpleAccent,
+                  progressBarColor: Colors.deepPurpleAccent),
+              spinnerMode: true,
+            ))),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => {},
+        label: Text('Узнать подробности'),
+        icon: Icon(Icons.engineering_rounded),
+      ),
+    );
   }
 }
